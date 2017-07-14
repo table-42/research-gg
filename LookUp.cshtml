@@ -1,0 +1,50 @@
+﻿@{
+    // ========= TODO: INSERT YOUR RIOT API KEY HERE ==========
+    RiotSharp.RiotApi api = RiotSharp.RiotApi.GetInstance("");
+    var text1 = "Your summoner ID is ";
+    var summ_name_text = "";
+    var summ_id_text = "";
+    if (IsPost)
+    {
+        var summ_name = Request["summ_name"];
+        var summoner = api.GetSummoner(RiotSharp.Region.na, summ_name);
+        summ_name_text = summoner.Name;
+        summ_id_text = summoner.Id.ToString();
+    }
+
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Look Up</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        body {
+            background-color: beige;
+            font-family: Verdana, Arial;
+            margin: 50px;
+        }
+
+        form {
+            padding: 10px;
+            border-style: solid;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <p>Enter the summoner name you want to look up: </p>
+    <form action="" method="post">
+        <p>
+            <label for="summ_name">Summoner Name:</label>
+            <input type="text" name="summ_name" />
+        </p>
+        <p><input type="submit" value="Look Up" /></p>
+    </form>
+
+    <p>@text1 @summ_id_text.</p>
+
+</body>
+</html>
